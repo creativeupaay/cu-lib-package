@@ -1,5 +1,6 @@
 // Export all templates
 export * from "./templates/WelcomeEmail";
+export * from "./templates/ResetPasswordEmail";
 
 // Export utils
 export * from "./utils/sendEmail";
