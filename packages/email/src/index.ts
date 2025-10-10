@@ -4,6 +4,9 @@ export * from "./templates/WelcomeEmail";
 export * from "./templates/ResetPasswordLinkEmail";
 export * from "./templates/OtpLoginEmail";
 export * from "./templates/ResetPasswordOtpEmail";
+export * from "./templates/VerificationEmail";
+export * from "./templates/TransactionalEmail";
+export * from "./templates/NotificationEmail";
 
 // Export utils
 export * from "./utils/sendEmail";

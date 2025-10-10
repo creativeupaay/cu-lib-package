@@ -15,7 +15,7 @@ export const BaseEmail = ({ children }: BaseEmailProps) => {
                     className="font-sans antialiased bg-gray-100 min-h-screen p-3"
                 >
                     <Container
-                        className={`max-w-2xl w-full rounded-2xl shadow-md overflow-hidden bg-gray-50 border border-solid border-gray-200`}
+                        className={`max-w-2xl w-full rounded-2xl shadow-md overflow-hidden bg-gray-50`}
                     >
                         {children}
                     </Container>

@@ -7,10 +7,14 @@
     "react-dom": "^18.2.0"
   },
   "dependencies": {
+    "@aws-sdk/client-ses": "^3.906.0",
     "@react-email/components": "^0.0.12",
-    "@react-email/render": "^0.0.12"
+    "@react-email/render": "^0.0.12",
+    "nodemailer": "^7.0.9",
+    "resend": "^6.1.2"
   },
   "devDependencies": {
-    "@react-email/tailwind": "^1.2.2"
+    "@react-email/tailwind": "^1.2.2",
+    "@types/nodemailer": "^7"
   }
 }

@@ -1,57 +1,52 @@
-import * as React from 'react';
-import { Section, Text, Button, Hr } from '@react-email/components';
-import { BaseEmail } from './BaseEmail';
+import * as React from "react";
+import { Section, Text, Button, Hr } from "@react-email/components";
+import { BaseEmail } from "./BaseEmail";
 
 interface ResetPasswordLinkEmailProps {
     firstName?: string;
     resetLink: string;
-    expiryMinutes: number;
+    expiryMinutes?: number;
     theme?: "default" | "primary" | "secondary" | string;
 }
 
 export const ResetPasswordLinkEmail = ({
-                                           firstName = 'there',
+                                           firstName = "there",
                                            resetLink,
                                            expiryMinutes = 10,
-                                           theme = 'default',
+                                           theme = "default",
                                        }: ResetPasswordLinkEmailProps) => {
-    let themeColor = 'blue';
-    let isCustomColor = false;
 
-    if (/^#([0-9A-F]{3}){1,2}$/i.test(theme)) {
-        isCustomColor = true;
-    } else if (theme === 'primary') {
-        themeColor = 'green';
-    } else if (theme === 'secondary') {
-        themeColor = 'violet';
-    }
+    const themeMap: Record<string, string> = {
+        default: "#3b82f6", // blue
+        primary: "#16a34a", // green
+        secondary: "#7c3aed", // violet
+    };
+
+    const isCustomColor = /^#([0-9A-F]{3}){1,2}$/i.test(theme);
+    const themeColor = isCustomColor ? theme : themeMap[theme] || themeMap.default;
 
     return (
         <BaseEmail>
             {/* Content */}
             <Section className="px-8 py-8">
                 <Text
-                    className={`text-lg font-semibold mb-3 ${
-                        isCustomColor ? '' : `text-${themeColor}-800`
-                    }`}
-                    style={isCustomColor ? { color: theme as string } : undefined}
+                    className="text-lg font-semibold mb-3"
+                    style={{ color: themeColor }}
                 >
                     Hi {firstName},
                 </Text>
 
                 <Text className="text-base mb-6 text-gray-700">
-                    We received a request to reset your password. Click the button
-                    below to create a new password for your account.
+                    We received a request to reset your password. Click the button below to
+                    create a new password for your account.
                 </Text>
 
                 {/* CTA Button */}
                 <Section className="text-center mb-8">
                     <Button
                         href={resetLink}
-                        className={`text-white text-base font-semibold rounded-lg px-6 py-3 no-underline ${
-                            isCustomColor ? '' : `bg-${themeColor}-600 hover:bg-${themeColor}-700`
-                        }`}
-                        style={isCustomColor ? { backgroundColor: theme as string } : undefined}
+                        className="text-white text-base font-semibold rounded-lg px-6 py-3 no-underline"
+                        style={{ backgroundColor: themeColor }}
                     >
                         Reset Password
                     </Button>
@@ -60,19 +55,15 @@ export const ResetPasswordLinkEmail = ({
                 {/* Info Box */}
                 <Section
                     className="rounded-lg border px-4 py-3 mb-6"
-                    style={
-                        isCustomColor
-                            ? { backgroundColor: `${theme}11`, borderColor: theme as string }
-                            : undefined
-                    }
+                    style={{
+                        borderColor: themeColor,
+                        backgroundColor: `${themeColor}10`,
+                    }}
                 >
                     <Text className="text-sm text-gray-700">
-                        This link will expire in{' '}
-                        <strong>
-                            {expiryMinutes} Minute{expiryMinutes > 1 ? 's' : ''}
-                        </strong>
-                        . If you didn't request a password reset, you can safely ignore
-                        this email.
+                        This link will expire in{" "}
+                        <strong>{expiryMinutes} minute{expiryMinutes > 1 ? "s" : ""}</strong>.
+                        If you didn't request a password reset, you can safely ignore this email.
                     </Text>
                 </Section>
 
@@ -81,14 +72,11 @@ export const ResetPasswordLinkEmail = ({
                     Or copy and paste this URL into your browser:
                 </Text>
                 <Text
-                    className={`text-sm break-all text-center p-3 rounded-lg mb-6 ${
-                        isCustomColor ? '' : `bg-${themeColor}-50 text-${themeColor}-600`
-                    }`}
-                    style={
-                        isCustomColor
-                            ? { backgroundColor: `${theme}15`, color: theme as string }
-                            : undefined
-                    }
+                    className="text-sm break-all text-center p-3 rounded-lg mb-6"
+                    style={{
+                        backgroundColor: `${themeColor}15`,
+                        color: themeColor,
+                    }}
                 >
                     {resetLink}
                 </Text>
@@ -102,21 +90,14 @@ export const ResetPasswordLinkEmail = ({
                 <Text className="text-base text-gray-700">
                     Best regards,
                     <br />
-                    <strong
-                        className={isCustomColor ? '' : `text-${themeColor}-800`}
-                        style={isCustomColor ? { color: theme as string } : undefined}
-                    >
-                        Security Team
-                    </strong>
+                    <strong style={{ color: themeColor }}>Security Team</strong>
                 </Text>
             </Section>
 
             {/* Footer */}
             <Section
-                className={`text-center py-4 ${
-                    isCustomColor ? '' : `bg-${themeColor}-50`
-                }`}
-                style={isCustomColor ? { backgroundColor: `${theme}0F` } : undefined}
+                className="text-center py-4"
+                style={{ backgroundColor: `${themeColor}0F` }}
             >
                 <Text className="text-sm text-gray-500">
                     For security reasons, never share this email with anyone.

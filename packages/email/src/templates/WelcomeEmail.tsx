@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Section, Text, Button, Hr } from '@react-email/components';
-import { BaseEmail } from './BaseEmail';
+import {Section, Text, Button, Hr} from '@react-email/components';
+import {BaseEmail} from './BaseEmail';
 
 interface WelcomeEmailProps {
     firstName?: string;
     productName?: string;
     navigateLink?: string;
+    year?: number;
     theme?: 'default' | 'primary' | 'secondary' | string;
 }
 
@@ -14,6 +15,7 @@ export const WelcomeEmail = ({
                                  productName = 'our platform',
                                  navigateLink,
                                  theme = 'default',
+                                 year = new Date().getFullYear(),
                              }: WelcomeEmailProps) => {
     let themeColor = 'blue';
     let isCustomColor = false;
@@ -35,7 +37,7 @@ export const WelcomeEmail = ({
                 }`}
                 style={
                     isCustomColor
-                        ? { backgroundColor: theme as string }
+                        ? {backgroundColor: theme as string}
                         : undefined
                 }
             >
@@ -53,7 +55,7 @@ export const WelcomeEmail = ({
                     className={`text-lg font-semibold mb-3 ${
                         isCustomColor ? '' : `text-${themeColor}-800`
                     }`}
-                    style={isCustomColor ? { color: theme as string } : undefined}
+                    style={isCustomColor ? {color: theme as string} : undefined}
                 >
                     Hi {firstName},
                 </Text>
@@ -134,7 +136,7 @@ export const WelcomeEmail = ({
                         }`}
                         style={
                             isCustomColor
-                                ? { backgroundColor: theme as string }
+                                ? {backgroundColor: theme as string}
                                 : undefined
                         }
                     >
@@ -142,17 +144,17 @@ export const WelcomeEmail = ({
                     </Button>
                 </Section>
 
-                <Hr className="my-6 border-gray-200" />
+                <Hr className="my-6 border-gray-200"/>
                 <Text className="text-sm mb-4 text-gray-500">
                     Need assistance? Reply to this email or contact our support team anytime.
                 </Text>
 
                 <Text className="text-base text-gray-700">
                     Best regards,
-                    <br />
+                    <br/>
                     <strong
                         className={isCustomColor ? '' : `text-${themeColor}-700`}
-                        style={isCustomColor ? { color: theme as string } : undefined}
+                        style={isCustomColor ? {color: theme as string} : undefined}
                     >
                         The {productName} Team
                     </strong>
@@ -176,7 +178,7 @@ export const WelcomeEmail = ({
                 }
             >
                 <Text className="text-xs text-gray-500">
-                    © 2025 {productName}. All rights reserved.
+                    © {year} {productName}. All rights reserved.
                 </Text>
             </Section>
         </BaseEmail>
